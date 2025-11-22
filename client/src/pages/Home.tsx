@@ -25,12 +25,13 @@ export function Home() {
       const response = await searchMedia(query);
       console.log('[Home] Search successful:', response.data.title);
       setResult(response.data);
-    } catch (err: any) {
-      console.error('[Home] Search failed:', err.message);
-      setError(err.message);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+      console.error('[Home] Search failed:', errorMessage);
+      setError(errorMessage);
       toast({
         title: 'Search Failed',
-        description: err.message,
+        description: errorMessage,
         variant: 'destructive',
       });
     } finally {
