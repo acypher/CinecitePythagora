@@ -436,8 +436,57 @@ function aggregateData(rtData: Partial<ScrapedData>, mcData: Partial<ScrapedData
   // Combine cast (prefer IMDB, fallback to others)
   const cast = imdbData.cast || rtData.cast || mcData.cast;
 
-  // Use IMDB reviewer summary if available
-  const reviewerSummary = imdbData.reviewerSummary;
+  // Generate reviewer summary based on available ratings
+  let reviewerSummary: string | undefined;
+
+  // Try to use IMDB reviewer summary first
+  if (imdbData.reviewerSummary) {
+    reviewerSummary = imdbData.reviewerSummary;
+  } else {
+    // Generate a simple summary based on ratings
+    const rtCriticsRating = rtData.ratings?.[0]?.criticsRating;
+    const mcCriticsRating = mcData.ratings?.[0]?.criticsRating;
+    const imdbRating = imdbData.ratings?.[0]?.criticsRating;
+
+    const summaryParts: string[] = [];
+
+    if (rtCriticsRating && rtCriticsRating !== 'N/A') {
+      const rtScore = parseInt(rtCriticsRating);
+      if (rtScore >= 80) {
+        summaryParts.push('Critics on Rotten Tomatoes praise this title with strong positive reviews.');
+      } else if (rtScore >= 60) {
+        summaryParts.push('Critics on Rotten Tomatoes give this title generally favorable reviews.');
+      } else {
+        summaryParts.push('Critics on Rotten Tomatoes have mixed reactions to this title.');
+      }
+    }
+
+    if (mcCriticsRating && mcCriticsRating !== 'N/A') {
+      const mcScore = parseInt(mcCriticsRating);
+      if (mcScore >= 75) {
+        summaryParts.push('Metacritic critics rate it highly with universal acclaim.');
+      } else if (mcScore >= 50) {
+        summaryParts.push('Metacritic critics provide generally positive feedback.');
+      } else {
+        summaryParts.push('Metacritic critics have varied opinions.');
+      }
+    }
+
+    if (imdbRating && imdbRating !== 'N/A') {
+      const imdbScore = parseFloat(imdbRating);
+      if (imdbScore >= 8.0) {
+        summaryParts.push('IMDB users rate it as an excellent title with broad appeal.');
+      } else if (imdbScore >= 6.5) {
+        summaryParts.push('IMDB users find it enjoyable and worthwhile.');
+      } else {
+        summaryParts.push('IMDB users have mixed opinions on this title.');
+      }
+    }
+
+    if (summaryParts.length > 0) {
+      reviewerSummary = summaryParts.join(' ');
+    }
+  }
 
   return {
     title,
