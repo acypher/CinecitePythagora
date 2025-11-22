@@ -45,7 +45,7 @@ export function SearchResults({ result }: SearchResultsProps) {
       <RatingsTable ratings={result.ratings} />
 
       {/* Plot Summary */}
-      <PlotSummary summary={result.plotSummary} />
+      <PlotSummary summary={result.plot} />
 
       {/* Cast List */}
       <CastList cast={result.cast} />

@@ -2,7 +2,7 @@ import { FileText } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 interface PlotSummaryProps {
-  summary: string;
+  summary?: string;
 }
 
 export function PlotSummary({ summary }: PlotSummaryProps) {

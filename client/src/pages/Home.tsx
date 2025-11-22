@@ -23,8 +23,8 @@ export function Home() {
 
     try {
       const response = await searchMedia(query);
-      console.log('[Home] Search successful:', response.data.title);
-      setResult(response.data);
+      console.log('[Home] Search successful:', response.title);
+      setResult(response);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
       console.error('[Home] Search failed:', errorMessage);

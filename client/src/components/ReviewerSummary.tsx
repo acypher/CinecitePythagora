@@ -2,7 +2,7 @@ import { MessageSquare } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 interface ReviewerSummaryProps {
-  summary: string;
+  summary?: string;
 }
 
 export function ReviewerSummary({ summary }: ReviewerSummaryProps) {

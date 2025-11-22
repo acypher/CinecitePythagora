@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 
 interface CastListProps {
-  cast: string[];
+  cast?: string[];
 }
 
 export function CastList({ cast }: CastListProps) {
