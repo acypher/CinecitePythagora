@@ -22,7 +22,33 @@ app.enable('json spaces');
 // We want to be consistent with URL paths, so we enable strict routing
 app.enable('strict routing');
 
-app.use(cors({}));
+// CORS configuration - allows requests from development and production frontends
+const allowedOrigins = [
+  'http://localhost:5173', // Development
+  'http://localhost:3000', // Development alternative
+  'https://preview-14ngc5z7.ui.pythagora.ai', // Pythagora preview
+  // Add your production URLs here when you deploy:
+  // 'https://streamratehub.acypher.com',
+  // 'https://acypher.com',
+  // 'https://streamratehub-xyz123.vercel.app', // Your Vercel URL
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      console.warn(`CORS: Blocked request from origin: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Allow cookies and authorization headers
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
