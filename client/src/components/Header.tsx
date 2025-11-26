@@ -14,7 +14,7 @@ export function Header() {
         >
           <Sparkles className="h-6 w-6 text-purple-600 dark:text-purple-400" />
           <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            StreamRate Hub
+            CineCite
           </span>
         </div>
         <div className="flex items-center gap-4">

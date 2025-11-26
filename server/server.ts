@@ -27,9 +27,9 @@ const allowedOrigins = [
   'http://localhost:3000', // Development alternative
   'https://preview-0wkhqlan.ui.pythagora.ai', // Pythagora preview
   // Add your production URLs here when you deploy:
-  // 'https://streamratehub.acypher.com',
+  // 'https://cinecite.acypher.com',
   // 'https://acypher.com',
-  // 'https://streamratehub-xyz123.vercel.app', // Your Vercel URL
+  // 'https://cinecite-xyz123.vercel.app', // Your Vercel URL
 ];
 
 app.use(cors({

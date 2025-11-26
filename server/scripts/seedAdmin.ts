@@ -14,7 +14,7 @@ const seedAdmin = async () => {
     console.log('✅ Database connected');
 
     // Admin user details
-    const adminEmail = 'admin@streamratehub.com';
+    const adminEmail = 'admin@cinecite.com';
     const adminPassword = 'Admin123!@#';
 
     // Check if admin already exists

@@ -1,8 +1,8 @@
-# StreamRateHub - Scripts & Database Management Guide
+# CineCite - Scripts & Database Management Guide
 
 ## Overview
 
-This guide explains the utility scripts available for StreamRateHub and provides practical examples of how to use them for development, testing, and production deployment.
+This guide explains the utility scripts available for CineCite and provides practical examples of how to use them for development, testing, and production deployment.
 
 ## Quick Reference
 
@@ -115,7 +115,7 @@ npm run script:clean
 ## Default Credentials
 
 ### Admin User (production-ready)
-- **Email:** `admin@streamratehub.com`
+- **Email:** `admin@cinecite.com`
 - **Password:** `Admin123!@#`
 - **Role:** admin
 - **Created by:** `npm run script:seed-admin`
@@ -181,7 +181,7 @@ npm run script:seed-admin
 🌱 Starting admin user seed...
 ✅ Database connected
 ✅ Admin user created successfully!
-📧 Email: admin@streamratehub.com
+📧 Email: admin@cinecite.com
 🔑 Password: Admin123!@#
 👤 User ID: 507f1f77bcf86cd799439011
 ⚠️  IMPORTANT: Change this password after first login!

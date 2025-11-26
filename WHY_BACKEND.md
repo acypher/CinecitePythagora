@@ -1,4 +1,4 @@
-# Why Does StreamRateHub Need a Backend Server?
+# Why Does CineCite Need a Backend Server?
 
 ## TL;DR
 
@@ -153,7 +153,7 @@ fetch('https://www.rottentomatoes.com/...')
 
 ## Conclusion
 
-**The backend server is not optional—it's fundamental to StreamRateHub's core functionality.** Without it, the application simply cannot work. The backend provides:
+**The backend server is not optional—it's fundamental to CineCite's core functionality.** Without it, the application simply cannot work. The backend provides:
 
 1. ✅ **Scraping capability** (impossible from browser)
 2. ✅ **Rate limiting** (prevents IP bans)
@@ -162,7 +162,7 @@ fetch('https://www.rottentomatoes.com/...')
 5. ✅ **Performance** (caching, optimization)
 6. ✅ **Legal compliance** (logging, user-agent)
 
-The backend is the bridge between the user's browser and the external rating websites, handling all the complex, restricted, and sensitive operations that make StreamRateHub possible.
+The backend is the bridge between the user's browser and the external rating websites, handling all the complex, restricted, and sensitive operations that make CineCite possible.
 
 ---
 

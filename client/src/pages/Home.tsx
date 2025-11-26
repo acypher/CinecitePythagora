@@ -53,7 +53,7 @@ export function Home() {
           <div className="flex items-center justify-center gap-3">
             <Sparkles className="h-12 w-12 text-purple-600 dark:text-purple-400 animate-pulse" />
             <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              StreamRate Hub
+              CineCite
             </h1>
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl">

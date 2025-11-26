@@ -4,7 +4,7 @@ This directory contains utility scripts for database management, seeding, and te
 
 ## Why Does This Backend Exist?
 
-The backend server is **essential** for StreamRateHub because:
+The backend server is **essential** for CineCite because:
 
 1. **Web Scraping Cannot Run in Browser**
    - CORS (Cross-Origin Resource Security) policies prevent browsers from scraping external websites
@@ -54,7 +54,7 @@ npm run script:seed-admin
 ```
 
 **Default Credentials:**
-- Email: `admin@streamratehub.com`
+- Email: `admin@cinecite.com`
 - Password: `Admin123!@#`
 
 #### Seed Test Users
