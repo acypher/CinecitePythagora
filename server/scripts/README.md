@@ -70,6 +70,73 @@ npm run script:seed-users
 - `user2@test.com` / `User123!` (user role)
 - `demo@test.com` / `Demo123!` (user role)
 
+### Cache Management Scripts
+
+#### Seed Search Cache
+Pre-caches popular movie and TV show searches to reduce scraping load.
+
+```bash
+npm run script:seed-cache
+```
+
+This script:
+- Fetches and caches 10+ popular titles
+- Sets 7-day expiration for cached entries
+- Helps reduce initial load time for common searches
+- Can take 30-60 seconds due to rate limiting
+
+#### View Search Statistics
+Displays analytics about cached searches and usage patterns.
+
+```bash
+npm run script:search-stats
+```
+
+Shows:
+- Most popular searches
+- Recently cached titles
+- Expiring cache entries
+- Cache age distribution
+- Search metrics and hit rates
+
+#### Clean Search Cache
+Removes old or expired cache entries with multiple cleanup options.
+
+```bash
+npm run script:clean-cache [option]
+```
+
+Options:
+- `1` - Remove expired entries only (default)
+- `2` - Remove entries older than 3 days
+- `3` - Remove entries with low search count (< 2)
+- `4` - Remove all cache entries
+
+Examples:
+```bash
+npm run script:clean-cache 1    # Clean expired only
+npm run script:clean-cache 4    # Clear entire cache
+```
+
+#### Test Search with Cache
+Tests search functionality while demonstrating cache performance benefits.
+
+```bash
+npm run script:test-cache ["query"]
+```
+
+Examples:
+```bash
+npm run script:test-cache "The Matrix"
+npm run script:test-cache "Breaking Bad"
+```
+
+This script:
+- Checks if query exists in cache (cache hit)
+- If not cached, performs live API search (cache miss)
+- Automatically caches new searches
+- Shows time savings from caching
+
 ### API Testing Scripts
 
 #### Test Search API

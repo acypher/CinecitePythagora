@@ -15,10 +15,14 @@
     "script:clean": "tsx scripts/cleanDatabase.ts",
     "script:seed-admin": "tsx scripts/seedAdmin.ts",
     "script:seed-users": "tsx scripts/seedTestUsers.ts",
+    "script:seed-cache": "tsx scripts/seedSearchCache.ts",
     "script:test-auth": "tsx scripts/testAuth.ts",
     "script:test-search": "tsx scripts/testSearch.ts",
     "script:test-searches": "tsx scripts/testMultipleSearches.ts",
-    "script:test-contender": "tsx scripts/testContender.ts"
+    "script:test-contender": "tsx scripts/testContender.ts",
+    "script:test-cache": "tsx scripts/testSearchWithCache.ts",
+    "script:search-stats": "tsx scripts/searchStats.ts",
+    "script:clean-cache": "tsx scripts/cleanSearchCache.ts"
   },
   "keywords": [],
   "author": "",
