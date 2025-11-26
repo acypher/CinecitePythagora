@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import express from 'express';
 import { Request, Response } from 'express';
 import basicRoutes from './routes/index';
-import authRoutes from './routes/authRoutes';
 import { connectDB } from './config/database';
 import cors from 'cors';
 
@@ -26,7 +25,7 @@ app.enable('strict routing');
 const allowedOrigins = [
   'http://localhost:5173', // Development
   'http://localhost:3000', // Development alternative
-  'https://preview-14ngc5z7.ui.pythagora.ai', // Pythagora preview
+  'https://preview-0wkhqlan.ui.pythagora.ai', // Pythagora preview
   // Add your production URLs here when you deploy:
   // 'https://streamratehub.acypher.com',
   // 'https://acypher.com',
@@ -62,8 +61,6 @@ app.on("error", (error: Error) => {
 
 // Basic Routes
 app.use(basicRoutes);
-// Authentication Routes
-app.use('/api/auth', authRoutes);
 
 // If no routes handled the request, it's a 404
 app.use((req: Request, res: Response) => {
