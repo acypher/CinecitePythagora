@@ -69,38 +69,55 @@ export function RatingsTable({ ratings }: RatingsTableProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {ratings.map((rating, index) => (
-              <TableRow 
-                key={index}
-                className="hover:bg-gray-50 dark:hover:bg-gray-900/30 transition-colors"
-              >
-                <TableCell className="font-semibold text-base">{rating.source}</TableCell>
-                <TableCell>
-                  {rating.criticsRating ? (
-                    <Badge
-                      variant={getRatingBadgeVariant(rating.criticsRating)}
-                      className={`text-base px-3 py-1 font-bold ${getRatingColor(rating.criticsRating)} ${getRatingBadgeClass(rating.criticsRating)}`}
-                    >
-                      {rating.criticsRating}
-                    </Badge>
-                  ) : (
-                    <span className="text-muted-foreground italic">N/A</span>
-                  )}
-                </TableCell>
-                <TableCell>
-                  {rating.audienceRating ? (
-                    <Badge
-                      variant={getRatingBadgeVariant(rating.audienceRating)}
-                      className={`text-base px-3 py-1 font-bold ${getRatingColor(rating.audienceRating)} ${getRatingBadgeClass(rating.audienceRating)}`}
-                    >
-                      {rating.audienceRating}
-                    </Badge>
-                  ) : (
-                    <span className="text-muted-foreground italic">N/A</span>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
+            {ratings.map((rating, index) => {
+              const isIMDB = rating.source.toUpperCase() === 'IMDB';
+              console.log(`[RatingsTable] Processing ${rating.source} - isIMDB: ${isIMDB}`);
+
+              // For IMDB, use criticsRating as the main score to display in audience column
+              const imdbScore = isIMDB ? rating.criticsRating : null;
+
+              return (
+                <TableRow
+                  key={index}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-900/30 transition-colors"
+                >
+                  <TableCell className="font-semibold text-base">{rating.source}</TableCell>
+                  <TableCell className={isIMDB ? 'opacity-40' : ''}>
+                    {isIMDB ? (
+                      <span className="text-muted-foreground italic">N/A</span>
+                    ) : rating.criticsRating ? (
+                      <Badge
+                        variant={getRatingBadgeVariant(rating.criticsRating)}
+                        className={`text-base px-3 py-1 font-bold ${getRatingColor(rating.criticsRating)} ${getRatingBadgeClass(rating.criticsRating)}`}
+                      >
+                        {rating.criticsRating}
+                      </Badge>
+                    ) : (
+                      <span className="text-muted-foreground italic">N/A</span>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {isIMDB && imdbScore ? (
+                      <Badge
+                        variant={getRatingBadgeVariant(imdbScore)}
+                        className={`text-base px-3 py-1 font-bold ${getRatingColor(imdbScore)} ${getRatingBadgeClass(imdbScore)}`}
+                      >
+                        {imdbScore}
+                      </Badge>
+                    ) : rating.audienceRating ? (
+                      <Badge
+                        variant={getRatingBadgeVariant(rating.audienceRating)}
+                        className={`text-base px-3 py-1 font-bold ${getRatingColor(rating.audienceRating)} ${getRatingBadgeClass(rating.audienceRating)}`}
+                      >
+                        {rating.audienceRating}
+                      </Badge>
+                    ) : (
+                      <span className="text-muted-foreground italic">N/A</span>
+                    )}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </CardContent>
