@@ -11,19 +11,31 @@ interface RatingsTableProps {
 function getRatingColor(rating: string): string {
   const numericRating = parseFloat(rating);
   const percentage = rating.includes('%') ? numericRating : rating.includes('/100') ? numericRating : numericRating * 10;
-  
+
   if (percentage >= 75) return 'text-green-600 dark:text-green-400';
   if (percentage >= 50) return 'text-yellow-600 dark:text-yellow-400';
-  return 'text-red-600 dark:text-red-400';
+  // Use black text for poor ratings with light red background for better readability
+  return 'text-black dark:text-white';
 }
 
 function getRatingBadgeVariant(rating: string): 'default' | 'secondary' | 'destructive' {
   const numericRating = parseFloat(rating);
   const percentage = rating.includes('%') ? numericRating : rating.includes('/100') ? numericRating : numericRating * 10;
-  
+
   if (percentage >= 75) return 'default';
   if (percentage >= 50) return 'secondary';
   return 'destructive';
+}
+
+function getRatingBadgeClass(rating: string): string {
+  const numericRating = parseFloat(rating);
+  const percentage = rating.includes('%') ? numericRating : rating.includes('/100') ? numericRating : numericRating * 10;
+
+  // Override background color for poor ratings with very light red and black text
+  if (percentage < 50) {
+    return 'bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-800';
+  }
+  return '';
 }
 
 export function RatingsTable({ ratings }: RatingsTableProps) {
@@ -65,9 +77,9 @@ export function RatingsTable({ ratings }: RatingsTableProps) {
                 <TableCell className="font-semibold text-base">{rating.source}</TableCell>
                 <TableCell>
                   {rating.criticsRating ? (
-                    <Badge 
+                    <Badge
                       variant={getRatingBadgeVariant(rating.criticsRating)}
-                      className={`text-base px-3 py-1 font-bold ${getRatingColor(rating.criticsRating)}`}
+                      className={`text-base px-3 py-1 font-bold ${getRatingColor(rating.criticsRating)} ${getRatingBadgeClass(rating.criticsRating)}`}
                     >
                       {rating.criticsRating}
                     </Badge>
@@ -77,9 +89,9 @@ export function RatingsTable({ ratings }: RatingsTableProps) {
                 </TableCell>
                 <TableCell>
                   {rating.audienceRating ? (
-                    <Badge 
+                    <Badge
                       variant={getRatingBadgeVariant(rating.audienceRating)}
-                      className={`text-base px-3 py-1 font-bold ${getRatingColor(rating.audienceRating)}`}
+                      className={`text-base px-3 py-1 font-bold ${getRatingColor(rating.audienceRating)} ${getRatingBadgeClass(rating.audienceRating)}`}
                     >
                       {rating.audienceRating}
                     </Badge>
