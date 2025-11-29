@@ -45,8 +45,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.on("error", (error: Error) => {
-  console.error(`Server error: ${error.message}`);
+app.use((error: Error, req: Request, res: Response, next: any) => {
   console.error(error.stack);
 });
 
