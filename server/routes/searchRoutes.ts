@@ -65,7 +65,7 @@ router.get('/', async (req, res) => {
 
     // Return the aggregated data
     res.status(200).json(mediaData);
-  } catch (error) {
+  }  catch (error: any) {
     console.error(`[SearchRoutes] Error processing search request: ${error.message}`, error);
     res.status(500).json({
       error: error.message || 'Failed to fetch media data. Please try again.',
